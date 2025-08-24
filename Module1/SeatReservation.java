@@ -1,3 +1,6 @@
+import java.lang.IllegalArgumentException;
+
+
 public class SeatReservation {
    
    private String flightDesignator;
