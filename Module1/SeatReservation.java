@@ -47,9 +47,9 @@ public class SeatReservation {
 
    @Override
    public String toString() {
-      return "Seat Reservation {flightDesignator=" + flightDesignator + 
-             ", " + "flightDate=" + flightDate +
-             ", " + "firstName=" + firstName + 
-             ", " + "lastName=" + lastName + "}";
+      return "SeatReservation{flightDesignator=" + flightDesignator + 
+             "," + "flightDate=" + flightDate +
+             "," + "firstName=" + firstName + 
+             "," + "lastName=" + lastName + "}";
    }
 }
