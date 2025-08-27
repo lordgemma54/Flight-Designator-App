@@ -1,3 +1,10 @@
+/* Project: Module 2
+* Author: Rahul Venaktesh
+* Email: rzv0040@auburn.edu
+* Date: 08-27-2025
+* Description: Flight Reservation App
+* */
+package edu.au.cpsc.module2;
 import java.lang.IllegalArgumentException;
 
 
