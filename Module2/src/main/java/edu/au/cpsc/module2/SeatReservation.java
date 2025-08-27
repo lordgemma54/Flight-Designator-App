@@ -20,8 +20,7 @@ public class SeatReservation {
 
     //---------------Getters and Setters--------------
 
-    //---------------FlightDesignator--------------
-
+        //---------------FlightDesignator--------------
     public String getFlightDesignator() {
       return flightDesignator;
    }
@@ -36,7 +35,7 @@ public class SeatReservation {
       this.flightDesignator = fd;
    }
 
-   //---------------Infant--------------
+        //---------------Infant--------------
     public boolean isFlyingWithInfant() {
         return flyingWithInfant;
     }
@@ -48,7 +47,8 @@ public class SeatReservation {
     public void makeNotFlyingWithInfant() {
         flyingWithInfant = false;
     }
-    //---------------Insurance--------------
+
+        //---------------Insurance--------------
     public boolean hasTravelInsurance() {
         return flyingWithTravelInsurance;
     }
@@ -60,8 +60,8 @@ public class SeatReservation {
     public void makeNotFlyingWithTravelInsurance() {
         flyingWithTravelInsurance = false;
     }
-    //---------------bags--------------
 
+        //---------------bags--------------
     public void setNumberOfBags(int numBags) {
        numberOfBags = numBags;
    }
@@ -70,8 +70,7 @@ public class SeatReservation {
        return numberOfBags;
    }
 
-    //---------------Time--------------
-
+        //---------------Time--------------
     public void setFlightDate(java.time.LocalDate date) {
       flightDate = date;
    }
@@ -80,11 +79,10 @@ public class SeatReservation {
         return flightDate;
     }
 
-    //---------------Names--------------
+        //---------------Names--------------
     public String getFirstName() {
       return firstName;
    }
-
 
    public void setFirstName(String fn) {
        if(fn.length() < 2 || fn.length() > 15) {
@@ -93,11 +91,9 @@ public class SeatReservation {
       firstName = fn;
    }
 
-
    public String getLastName() {
       return lastName;
    }
-
 
    public void setLastName(String ln) {
        if(ln.length() < 2 || ln.length() > 15) {
@@ -106,8 +102,7 @@ public class SeatReservation {
       lastName = ln;
    }
 
-    //---------------ToString--------------
-
+        //---------------ToString--------------
     @Override
    public String toString() {
       return "SeatReservation{flightDesignator=" + flightDesignator + 
