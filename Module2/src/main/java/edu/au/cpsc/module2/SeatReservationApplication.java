@@ -4,11 +4,13 @@ import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -20,7 +22,8 @@ public class SeatReservationApplication extends Application {
 //      FXMLLoader fxmlLoader = new FXMLLoader(SeatReservationApplication.class.getResource("hello-view.fxml"));
         BorderPane borderPane = new BorderPane();
 
-        Label flightDesignator = new Label("Flight designator");
+        Label flightDesignator = new Label("Flight designator:");
+        flightDesignator.setFont(new Font("Arial", 14));
         Label flightDate = new Label("Flight date");
         Label firstName = new Label("First name");
         Label lastName = new Label("Last name");
@@ -39,11 +42,11 @@ public class SeatReservationApplication extends Application {
         bottomButtons.setSpacing(5);
 
         TextField fltDesignator = new TextField();
-        TextField fltDate = new TextField();
+        DatePicker fltDate = new DatePicker();
         TextField fName = new TextField();
         TextField lName = new TextField();
         TextField numBags = new TextField();
-        TextField numPassengers = new TextField();
+        TextField numPassengers = new TextField("0");
         VBox textFields = new VBox(fltDesignator, fltDate, fName,
         lName, numBags, numPassengers);
         borderPane.setRight(textFields);
