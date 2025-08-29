@@ -5,6 +5,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -28,7 +29,7 @@ public class SeatReservationApplication extends Application {
 
 //      FXMLLoader fxmlLoader = new FXMLLoader(SeatReservationApplication.class.getResource("hello-view.fxml"));
         GridPane gridPane = new GridPane();
-        VBox root = new VBox();
+        BorderPane root = new BorderPane();
         HBox bottomButtons = new HBox();
 
         Label flightDesignator = new Label("Flight designator:");
@@ -77,10 +78,13 @@ public class SeatReservationApplication extends Application {
         bottomButtons.getChildren().addAll(save, cancel);
         bottomButtons.setAlignment( Pos.BOTTOM_CENTER);
 
-        root.getChildren().addAll(gridPane, bottomButtons);
+
+        root.setCenter(gridPane);
+        root.setBottom(bottomButtons);
 
         root.setPadding(new Insets(10, 10, 10, 10));
         bottomButtons.setPadding(new Insets(10,10,10,10));
+
         Scene scene = new Scene(root);
         stage.setTitle("Rahul Venkatesh's seat reservation App");
         stage.setScene(scene);
@@ -92,10 +96,5 @@ public class SeatReservationApplication extends Application {
 //        fName.setText(seatReservation.getFirstName());
 //        lName.setText(seatReservation.getLastName());
 //        numBags.setText(seatReservation.getNumberOfBags());
-
-
-
-
-
 //    }
 }
