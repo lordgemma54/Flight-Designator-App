@@ -105,12 +105,12 @@ public class SeatReservation {
         //---------------ToString--------------
     @Override
    public String toString() {
-      return "SeatReservation{flightDesignator=" + flightDesignator + 
-             "," + "flightDate=" + flightDate +
-             "," + "firstName=" + firstName + 
-             "," + "lastName=" + lastName +
-              "," + "numberOfBags=" + numberOfBags +
-              "," + "flyingWithInfant=" + flyingWithInfant +
-              "," + "flyingWithTravelInsurance=" + flyingWithTravelInsurance+ "}";
+      return "SeatReservation{flightDesignator=" + getFlightDesignator() +
+             "," + "flightDate=" + getFlightDate() +
+             "," + "firstName=" + getFirstName() +
+             "," + "lastName=" + getLastName() +
+              "," + "numberOfBags=" + getNumberOfBags() +
+              "," + "flyingWithInfant=" + isFlyingWithInfant() +
+              "," + "flyingWithTravelInsurance=" + hasTravelInsurance() + "}";
    }
 }
