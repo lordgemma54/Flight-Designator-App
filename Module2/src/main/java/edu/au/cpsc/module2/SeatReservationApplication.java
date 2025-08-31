@@ -46,7 +46,6 @@ public class SeatReservationApplication extends Application {
 
         Label flightDesignator = new Label("Flight designator:");
         gridPane.add(flightDesignator, 0, 0);
-//        flightDesignator.setFont(new Font("Arial", 14));
         fltDesignator = new TextField();
         gridPane.add(fltDesignator, 1, 0);
 
@@ -171,7 +170,6 @@ public class SeatReservationApplication extends Application {
     class SaveButtonClickHandler implements EventHandler<ActionEvent> {
         @Override
         public void handle(ActionEvent event) {
-
            try {
                setInstanceFields();
                System.out.println(seatReservation.toString());
