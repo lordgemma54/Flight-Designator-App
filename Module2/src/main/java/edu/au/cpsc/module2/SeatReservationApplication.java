@@ -17,15 +17,16 @@ import java.io.IOException;
 import java.time.LocalDate;
 
 public class SeatReservationApplication extends Application {
-    SeatReservation seatReservation;
-    TextField fltDesignator;
-    DatePicker fltDate;
-    TextField fName;
-    TextField lName;
-    TextField numBags;
-    TextField numPassengers;
-    CheckBox withInfant;
-    CheckBox travelInsurance;
+    private SeatReservation seatReservation;
+    private DatePicker fltDate;
+    private TextField fltDesignator;
+    private TextField fName;
+    private TextField lName;
+    private TextField numBags;
+    private TextField numPassengers;
+    private CheckBox withInfant;
+    private CheckBox travelInsurance;
+
     @Override
     public void start(Stage stage) throws IOException {
 
@@ -44,6 +45,21 @@ public class SeatReservationApplication extends Application {
         BorderPane root = new BorderPane();
         HBox bottomButtons = new HBox();
 
+        createGridPane(gridPane);
+        createButtons(bottomButtons);
+
+        root.setCenter(gridPane);
+        root.setBottom(bottomButtons);
+        root.setPadding(new Insets(10, 10, 10, 10));
+        Scene scene = new Scene(root);
+        stage.setTitle("Rahul Venkatesh's Seat Reservation App");
+        stage.setScene(scene);
+
+        updateUI();
+        stage.show();
+    }
+
+    private void createGridPane(GridPane gridPane) {
         Label flightDesignator = new Label("Flight designator:");
         gridPane.add(flightDesignator, 0, 0);
         fltDesignator = new TextField();
@@ -86,29 +102,17 @@ public class SeatReservationApplication extends Application {
         gridPane.add(flyingWithTravelInsurance, 0, 7);
         travelInsurance = new CheckBox();
         gridPane.add(travelInsurance, 1, 7);
+    }
 
+    private void createButtons(HBox bottomButtons) {
         Button save = new Button("Save");
         save.setOnAction(new SaveButtonClickHandler());
-
         Button cancel = new Button("Cancel");
         cancel.setOnAction(new CancelButtonClickHandler());
-
         bottomButtons.getChildren().addAll(save, cancel);
         bottomButtons.setAlignment( Pos.BOTTOM_CENTER);
-
-        root.setCenter(gridPane);
-        root.setBottom(bottomButtons);
-
-        root.setPadding(new Insets(10, 10, 10, 10));
         bottomButtons.setPadding(new Insets(10,10,10,10));
 
-
-        Scene scene = new Scene(root);
-        stage.setTitle("Rahul Venkatesh's Seat Reservation App");
-        stage.setScene(scene);
-
-        updateUI();
-        stage.show();
     }
 
     private void setInstanceFields() throws IllegalArgumentException{
