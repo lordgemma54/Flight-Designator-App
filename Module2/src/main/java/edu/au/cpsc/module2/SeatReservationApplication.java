@@ -107,12 +107,13 @@ public class SeatReservationApplication extends Application {
     private void createButtons(HBox bottomButtons) {
         Button save = new Button("Save");
         save.setOnAction(new SaveButtonClickHandler());
+
         Button cancel = new Button("Cancel");
         cancel.setOnAction(new CancelButtonClickHandler());
+
         bottomButtons.getChildren().addAll(save, cancel);
         bottomButtons.setAlignment( Pos.BOTTOM_CENTER);
         bottomButtons.setPadding(new Insets(10,10,10,10));
-
     }
 
     private void setInstanceFields() throws IllegalArgumentException{
