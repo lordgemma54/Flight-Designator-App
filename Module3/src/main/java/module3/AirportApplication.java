@@ -6,14 +6,23 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.List;
 
 public class AirportApplication extends Application {
+    public static List<Airport> allAirports;
+
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(AirportApplication.class.getResource("hello-view.fxml"));
+        Airport.readAll();
+        FXMLLoader fxmlLoader = new FXMLLoader(AirportApplication.class.getResource("Main-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 320, 240);
-        stage.setTitle("Hello!");
+
+
+
+        stage.setTitle("Rahul Venkateshs Airport Mapview App");
         stage.setScene(scene);
+        stage.setMinWidth(900);
+        stage.setMinHeight(600);
         stage.show();
     }
 }

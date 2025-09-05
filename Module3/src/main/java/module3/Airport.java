@@ -33,6 +33,7 @@ public class Airport {
 
 
 
+    public static List<Airport> airportList = new ArrayList<>();
 
     public String getContinent() {
         return continent;
@@ -139,13 +140,11 @@ public class Airport {
     }
 
   public static List<Airport> readAll() throws IOException {
-     List<Airport> airportList = new ArrayList<>();
 
     try (InputStream inputStream = Airport.class.getResourceAsStream("/airport-codes.csv");
     BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
 
         String header = reader.readLine();
-
 
         String line;
         while((line = reader.readLine()) != null) {
@@ -163,6 +162,7 @@ public class Airport {
                 }else {
                     airport.setElevationFt(0);
                 }
+
                 airport.setContinent(columns[4].trim());
                 airport.setIsoCountry(columns[5].trim());
                 airport.setIsoRegion(columns[6].trim());
@@ -176,7 +176,7 @@ public class Airport {
                 }
 
                 if(!columns[12].trim().isEmpty()) {
-                    airport.setCoordinatesLat(Double.parseDouble(columns[12].trim()));
+                    airport.setCoordinatesLong(Double.parseDouble(columns[12].trim()));
                 }
                 airportList.add(airport);
             }
@@ -185,6 +185,7 @@ public class Airport {
     }
     return airportList;
   }
+
   @Override
     public String toString() {
         return "[ident= " + getIdent() + "/type= " + getType() + "/name= " + getName()
