@@ -1,8 +1,10 @@
 package module3;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.web.WebView;
 
 public class HelloController {
     @FXML
@@ -20,9 +22,23 @@ public class HelloController {
     @FXML
     public TextField region;
     @FXML
+    public TextField municipality;
+    @FXML
     private Label welcomeText;
     @FXML
-    private TextField ident;
+    public TextField ident;
+    @FXML
+    public Button searchButton;
+    @FXML
+    private WebView webView;
+
+    Airport searchAirport = new Airport();
+
+    @FXML
+    protected void onSearchButtonAction() {
+        webView.getEngine().load("https://www.windy.com/?" + searchAirport.getCoordinatesLong()
+                + "," + searchAirport.getCoordinatesLat() + ",12");
+    }
 
     @FXML
     protected void onHelloButtonClick() {
