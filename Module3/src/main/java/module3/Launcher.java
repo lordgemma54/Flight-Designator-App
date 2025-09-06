@@ -9,6 +9,7 @@ public class Launcher {
         try {
             Airport airportTest = new Airport();
             List<Airport> test = airportTest.readAll();
+
             for(Airport ap : test) {
                 System.out.println(ap);
             }

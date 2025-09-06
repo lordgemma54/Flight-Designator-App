@@ -13,11 +13,14 @@ public class AirportApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
 
-        Airport.readAll();
+        try {
+            Airport.readAll();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         FXMLLoader fxmlLoader = new FXMLLoader(AirportApplication.class.getResource("Main-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
-
-
+        Scene scene = new Scene(fxmlLoader.load() );
 
         stage.setTitle("Rahul Venkateshs Airport Mapview App");
         stage.setScene(scene);

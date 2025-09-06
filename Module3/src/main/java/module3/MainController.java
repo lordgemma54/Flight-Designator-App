@@ -29,30 +29,127 @@ public class MainController{
     @FXML
     private WebView webView;
 
-Airport foundAirport;
+    Airport foundAirport;
 
     @FXML
     protected void onSearchButtonAction() {
+        if(!ident.getText().isEmpty()) {
+            if (findAirportByIdent(ident.getText().trim().toUpperCase())) {
+                ifFoundByIdent(foundAirport);
+                onSearchButtonAction(foundAirport);
+            } else {
+                ident.clear();
+                ident.setPromptText("Invalid Code");
+            }
+        } else if(!iataCode.getText().isEmpty()) {
+            if (findAirportByIata(iataCode.getText().trim().toUpperCase())) {
+                ifFoundByIata(foundAirport);
+                onSearchButtonAction(foundAirport);
+            } else {
+                iataCode.clear();
+                iataCode.setPromptText("Invalid Code");
+            }
+        } else if(!localCode.getText().isEmpty()) {
+            if (findAirportByLocalCode(localCode.getText().trim().toUpperCase())) {
+                ifFoundByLocalCode(foundAirport);
+                onSearchButtonAction(foundAirport);
+            } else {
+                localCode.clear();
+                localCode.setPromptText("Invalid Code");
+            }
+        }else{
+            ident.setPromptText("--Enter a Code--");
+            iataCode.setPromptText("--Enter a Code--");
+            localCode.setPromptText("--Enter a Code--");
+        }
+    }
+
+    @FXML
+    protected void onSearchButtonAction(Airport foundAirport) {
         webView.getEngine().load("https://www.windy.com/?" + foundAirport.getCoordinatesLong()
                 + "," + foundAirport.getCoordinatesLat() + ",12");
-        System.out.println(foundAirport.getCoordinatesLong() + "///" + foundAirport.getCoordinatesLat());
     }
 
     @FXML
     protected void onIdentEnterPressed() {
-        String identCodeValue = ident.getText().trim().toUpperCase();
-        for(Airport a : Airport.airportList) {
-            if(a.getIdent().equalsIgnoreCase(identCodeValue)) {
-                foundAirport = a;
-                ifFoundByIdent(foundAirport);
-                return;
-            }
+
+        if (findAirportByIdent(ident.getText().trim().toUpperCase())) {
+            onSearchButtonAction(foundAirport);
+            ifFoundByIdent(foundAirport);
+        } else {
+            ident.clear();
+            ident.setPromptText("Invalid Code");
         }
     }
 
-    private void ifFoundByIdent(Airport airport) {
+    @FXML
+    protected void onIataEnterPressed() {
+        if(findAirportByIata(iataCode.getText().trim().toUpperCase())) {
+            onSearchButtonAction(foundAirport);
+            ifFoundByIata(foundAirport);
+        }else {
+            iataCode.clear();
+            iataCode.setPromptText("Invalid Code");
+        }
+    }
+
+    @FXML
+    protected void onLocalCodeEnterPressed() {
+        if(findAirportByLocalCode(localCode.getText().trim().toUpperCase())) {
+            onSearchButtonAction(foundAirport);
+            ifFoundByLocalCode(foundAirport);
+        } else {
+            localCode.clear();
+            localCode.setPromptText("Invalid Code");
+        }
+    }
+
+    private boolean findAirportByIdent(String code) {
+        for(Airport a : Airport.airportList) {
+            if(a.getIdent().equalsIgnoreCase(code)) {
+                foundAirport = a;
+                return true;
+            }
+        }return false;
+    }
+
+    private void ifFoundByIdent(Airport foundAirport) {
         iataCode.setText(foundAirport.getIataCode());
         localCode.setText(foundAirport.getLocalCode());
+        setOtherFields(foundAirport);
+    }
+
+    private boolean findAirportByIata(String code) {
+        for(Airport a : Airport.airportList) {
+            if(a.getIataCode().equalsIgnoreCase(code)) {
+                foundAirport = a;
+                return true;
+            }
+        }return false;
+    }
+
+    private void ifFoundByIata(Airport foundAirport) {
+        ident.setText(foundAirport.getIdent());
+        localCode.setText(foundAirport.getLocalCode());
+        setOtherFields(foundAirport);
+    }
+
+    private boolean findAirportByLocalCode(String code) {
+        for(Airport a : Airport.airportList) {
+            if(a.getLocalCode().equalsIgnoreCase(code)) {
+                foundAirport = a;
+                return true;
+            }
+        }return false;
+    }
+
+    private void ifFoundByLocalCode(Airport foundAirport) {
+        ident.setText(foundAirport.getIdent());
+        iataCode.setText(foundAirport.getIataCode());
+        setOtherFields(foundAirport);
+    }
+
+    private void setOtherFields(Airport foundAirport) {
         type.setText(foundAirport.getType());
         name.setText(foundAirport.getName());
         elevation.setText(String.valueOf(foundAirport.getElevationFt()));
@@ -61,59 +158,7 @@ Airport foundAirport;
         municipality.setText(foundAirport.getMunicipality());
     }
 
-    @FXML
-    protected void onIataEnterPressed() {
-        String iataCodeValue = iataCode.getText().trim().toUpperCase();
-        System.out.println(iataCodeValue);
-    }
-
-    @FXML
-    protected void onLocalCodeEnterPressed() {
-        String localCodeValue = localCode.getText().trim().toUpperCase();
-        System.out.println(localCodeValue);
-    }
-
-//    private codeSearch(String searchInput) {
-
-    //    use optionals so i dont return null?
-
-//        this.ident = searchInput if from identField.getText();
-//        this.iata - searchInput if from iataField.getText();
-//        this.localCode = searchInput if from localCodeField.getText();
-//
-//        if(code is from ident) {
-//            search airport.getIdent();
-//            ifFoundByIdent();
-//        } else if {
-//            search airport.getIataCode();
-//        } else if {
-//            search airport.getLocalCode();
-//        } else{
-//            return some message here;
-//        }
-//    }
-//
-//    private void ifFoundByIdent(String code){
-//        populate the fields here;
-//        update webView with coordinates;
-//    }
-//
-//    public void ifFoundByIata(String code) {
-//        populate the fields here;
-//        update webView with coordinates;
-//    }
-//
-//    public void ifFoundByLocalCode(String code) {
-//        populate the fields here;
-//        update webView with coordinates;
-//    }
-
     public void initialize() {
         webView.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
-
-//        webView.prefWidthProperty().bind(borderPaneParent.widthProperty());
-//        webView.prefHeightProperty().bind(borderPaneParent.heightProperty());
-
-
     }
 }

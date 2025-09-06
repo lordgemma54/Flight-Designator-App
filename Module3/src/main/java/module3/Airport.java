@@ -178,6 +178,8 @@ public class Airport {
                 airportList.add(airport);
             }
         }
+    } catch (IOException e) {
+        e.printStackTrace();
     }
     return airportList;
   }
