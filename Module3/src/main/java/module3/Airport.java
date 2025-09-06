@@ -30,9 +30,6 @@ public class Airport {
     private double coordinatesLat;
     private double coordinatesLong;
 
-
-
-
     public static List<Airport> airportList = new ArrayList<>();
 
     public String getContinent() {
@@ -180,7 +177,6 @@ public class Airport {
                 }
                 airportList.add(airport);
             }
-
         }
     }
     return airportList;

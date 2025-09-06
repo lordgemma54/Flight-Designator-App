@@ -28,14 +28,14 @@ public class MainController{
     public Button searchButton;
     @FXML
     private WebView webView;
-//   @FXML
+
 Airport foundAirport;
 
     @FXML
     protected void onSearchButtonAction() {
         webView.getEngine().load("https://www.windy.com/?" + foundAirport.getCoordinatesLong()
                 + "," + foundAirport.getCoordinatesLat() + ",12");
-        System.out.println("button clicked!");
+        System.out.println(foundAirport.getCoordinatesLong() + "///" + foundAirport.getCoordinatesLat());
     }
 
     @FXML
@@ -45,6 +45,7 @@ Airport foundAirport;
             if(a.getIdent().equalsIgnoreCase(identCodeValue)) {
                 foundAirport = a;
                 ifFoundByIdent(foundAirport);
+                return;
             }
         }
     }
@@ -54,6 +55,10 @@ Airport foundAirport;
         localCode.setText(foundAirport.getLocalCode());
         type.setText(foundAirport.getType());
         name.setText(foundAirport.getName());
+        elevation.setText(String.valueOf(foundAirport.getElevationFt()));
+        country.setText(foundAirport.getIsoCountry());
+        region.setText(foundAirport.getIsoRegion());
+        municipality.setText(foundAirport.getMunicipality());
     }
 
     @FXML
