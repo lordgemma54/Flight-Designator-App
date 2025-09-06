@@ -24,8 +24,6 @@ public class AirportApplication extends Application {
 
         stage.setTitle("Rahul Venkateshs Airport Mapview App");
         stage.setScene(scene);
-        stage.setMinWidth(900);
-        stage.setMinHeight(600);
         stage.show();
     }
 }
