@@ -22,6 +22,9 @@ public class AirportApplication extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(AirportApplication.class.getResource("Main-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load() );
 
+        stage.setMinWidth(900);
+        stage.setMinHeight(600);
+
         stage.setTitle("Rahul Venkateshs Airport Mapview App");
         stage.setScene(scene);
         stage.show();
