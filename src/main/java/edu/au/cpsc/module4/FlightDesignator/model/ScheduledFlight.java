@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.List;
 
 public class ScheduledFlight implements Serializable {
+
     private String flightDesignator;
     private String departureAirportIdent;
     private java.time.LocalDateTime departureTime;
@@ -13,6 +14,31 @@ public class ScheduledFlight implements Serializable {
     private java.time.LocalDateTime arrivalTime;
     private HashSet<String> daysOfWeek;
 
+    public static List<ScheduledFlight> demoFlights() {
+//        List<ScheduledFlight> flights = new ArrayList<>();
+//        ScheduledFlight sf01 = new ScheduledFlight();
+//        ScheduledFlight sf02 = new ScheduledFlight();
+//
+//        sf01.setFlightDesignator("fx-900");
+//        sf01.setDepartureAirportIdent("KDEN");
+//        sf01.setArrivalAirportIdent("SYR");
+//
+//        sf01.setFlightDesignator("LA-66");
+//        sf01.setDepartureAirportIdent("LAX");
+//        sf01.setArrivalAirportIdent("BLR");
+//
+//        flights.add(sf01);
+//        flights.add(sf02);
+//        return flights;
+        return List.of(new ScheduledFlight("fx-900","KDEN", "SYR" ),
+                new ScheduledFlight("LA-66","LAX", "BLR"));
+    }
+
+    public ScheduledFlight(String flightDesignator, String depAirport, String arrAirport) {
+        setFlightDesignator(flightDesignator);
+        setDepartureAirportIdent(depAirport);
+        setArrivalAirportIdent(arrAirport);
+    }
     public String getFlightDesignator() {
         return flightDesignator;
     }
