@@ -1,14 +1,16 @@
 package edu.au.cpsc.module4.FlightDesignator.model;
 
-import java.time.LocalDate;
+import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.HashSet;
+import java.util.List;
 
-public class ScheduledFlight {
+public class ScheduledFlight implements Serializable {
     private String flightDesignator;
     private String departureAirportIdent;
-    private java.time.LocalDate departureTime;
+    private java.time.LocalDateTime departureTime;
     private String arrivalAirportIdent;
-    private java.time.LocalDate arrivalTime;
+    private java.time.LocalDateTime arrivalTime;
     private HashSet<String> daysOfWeek;
 
     public String getFlightDesignator() {
@@ -33,11 +35,11 @@ public class ScheduledFlight {
         this.departureAirportIdent = departureAirportIdent;
     }
 
-    public LocalDate getDepartureTime() {
+    public LocalDateTime getDepartureTime() {
         return departureTime;
     }
 
-    public void setDepartureTime(LocalDate departureTime) {
+    public void setDepartureTime(LocalDateTime departureTime) {
         if( departureTime == null) {
             throw new IllegalArgumentException();
         }
@@ -55,11 +57,11 @@ public class ScheduledFlight {
         this.arrivalAirportIdent = arrivalAirportIdent;
     }
 
-    public LocalDate getArrivalTime() {
+    public LocalDateTime getArrivalTime() {
         return arrivalTime;
     }
 
-    public void setArrivalTime(LocalDate arrivalTime) {
+    public void setArrivalTime(LocalDateTime arrivalTime) {
         if( arrivalTime == null) {
             throw new IllegalArgumentException();
         }
@@ -70,10 +72,10 @@ public class ScheduledFlight {
         return daysOfWeek;
     }
 
-    public void setDaysOfWeek(HashSet<String> daysOfWeek) {
+    public void setDaysOfWeek(List<String> daysOfWeek) {
         if( daysOfWeek == null) {
             throw new IllegalArgumentException();
         }
-        this.daysOfWeek = daysOfWeek;
+        this.daysOfWeek = new HashSet<>(daysOfWeek);
     }
 }
