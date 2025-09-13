@@ -1,18 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 
-<TableView fx:id="flightList" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.au.cpsc.module4.FlightDesignator.controller.FlightTableViewController">
+<TableView fx:id="flightListTableView" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.au.cpsc.module4.FlightDesignator.controller.FlightTableViewController">
      <columns>
-         <TableColumn fx:id="flightDesignatorCol" maxWidth="1.7976931348623157E308" minWidth="120.0" prefWidth="-1.0" text="Flight Designator" />
-         <TableColumn fx:id="departureAirportCol" maxWidth="1.7976931348623157E308" minWidth="120.0" prefWidth="-1.0" text="Departure Airport" />
-         <TableColumn fx:id="departureTimeCol" maxWidth="1.7976931348623157E308" minWidth="120.0" prefWidth="-1.0" text="Departure Time" />
-         <TableColumn fx:id="arrivalAirportCol" maxWidth="1.7976931348623157E308" minWidth="120.0" prefWidth="-1.0" text="Arrival Airport" />
-         <TableColumn fx:id="arrivalTimeCol" maxWidth="1.7976931348623157E308" prefWidth="120.0" text="Arrival time" />
+         <TableColumn fx:id="flightDesignatorCol" editable="false" maxWidth="1.7976931348623157E308" minWidth="120.0" prefWidth="-1.0" text="Flight Designator" />
+         <TableColumn fx:id="departureAirportCol" editable="false" maxWidth="1.7976931348623157E308" minWidth="120.0" prefWidth="-1.0" text="Departure Airport" />
+         <TableColumn fx:id="departureTimeCol" editable="false" maxWidth="1.7976931348623157E308" minWidth="120.0" prefWidth="-1.0" text="Departure Time" />
+         <TableColumn fx:id="arrivalAirportCol" editable="false" maxWidth="1.7976931348623157E308" minWidth="120.0" prefWidth="-1.0" text="Arrival Airport" />
+         <TableColumn fx:id="arrivalTimeCol" editable="false" maxWidth="1.7976931348623157E308" prefWidth="120.0" text="Arrival time" />
      </columns>
-   <padding>
-      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-   </padding>
  </TableView>

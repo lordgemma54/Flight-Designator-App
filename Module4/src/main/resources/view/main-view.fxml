@@ -2,11 +2,14 @@
 
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane prefHeight="290.0" prefWidth="451.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.au.cpsc.module4.FlightDesignator.controller.MainController">
+<BorderPane prefHeight="290.0" prefWidth="451.0"
+            xmlns="http://javafx.com/javafx/24.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="edu.au.cpsc.module4.FlightDesignator.controller.MainController">
    <center>
-      <fx:include maxWidth="Infinity" source="flight-table-view.fxml" />
+      <fx:include fx:id="flightTableView" maxWidth="Infinity" source="flight-table-view.fxml" />
    </center>
    <bottom>
-      <fx:include maxWidth="Infinity" source="flight-detail-view.fxml" />
+      <fx:include fx:id="flightDetailView" maxWidth="Infinity" source="flight-detail-view.fxml" />
    </bottom>
 </BorderPane>
