@@ -1,14 +1,16 @@
 package edu.au.cpsc.module4.FlightDesignator.controller;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 
 public class MainController {
     @FXML
-    private Label welcomeText;
+    private FlightTableViewController flightTableViewController;
 
     @FXML
-    protected void onHelloButtonClick() {
-        welcomeText.setText("Welcome to JavaFX Application!");
+    private FlightDetailViewController flightDetailViewController;
+
+    @FXML
+    public void initialize() {
+        flightTableViewController.setDetailViewController(flightDetailViewController);
     }
 }

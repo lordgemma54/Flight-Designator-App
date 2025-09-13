@@ -20,7 +20,7 @@ public class FlightScheduleApplication extends Application {
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Rahul Venkatesh's Flight Designator App");
         stage.setScene(scene);
-        stage.setMinWidth(900);
+        stage.setMinWidth(720);
         stage.setMinHeight(400);
         stage.show();
     }

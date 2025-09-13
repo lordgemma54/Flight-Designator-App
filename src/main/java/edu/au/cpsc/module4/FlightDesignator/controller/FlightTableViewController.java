@@ -1,80 +1,87 @@
 package edu.au.cpsc.module4.FlightDesignator.controller;
 
 import edu.au.cpsc.module4.FlightDesignator.model.ScheduledFlight;
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
+import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.time.LocalDateTime;
 
 public class FlightTableViewController {
 
     @FXML
-    private TableView<ScheduledFlight> flightList;
+    private TableView<ScheduledFlight> flightListTableView;
 
     @FXML
-    private TableColumn<ScheduledFlight, String> flightDesignatorCol;
+    private TableColumn<ScheduledFlight, String> flightDesignatorCol, departureAirportCol, arrivalAirportCol;
 
     @FXML
-    private TableColumn<ScheduledFlight, String> departureAirportCol;
+    private TableColumn<ScheduledFlight, LocalDateTime> arrivalTimeCol, departureTimeCol;
 
     @FXML
-    private TableColumn<ScheduledFlight, String> arrivalAirportCol;
-
-    @FXML
-    private TableColumn<ScheduledFlight, LocalDateTime> arrivalTimeCol;
-
-    @FXML
-    private TableColumn<ScheduledFlight, LocalDateTime> departureTimeCol;
-
+    private FlightDetailViewController flightDetailViewController;
 
     private static ScheduledFlight flight;
 
     public void initialize() {
 
-        flightList.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        flightListTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         flightDesignatorCol.setMaxWidth(Double.MAX_VALUE);
         departureAirportCol.setMaxWidth(Double.MAX_VALUE);
         arrivalAirportCol.setMaxWidth(Double.MAX_VALUE);
         arrivalTimeCol.setMaxWidth(Double.MAX_VALUE);
         departureTimeCol.setMaxWidth(Double.MAX_VALUE);
 
-        flightList.setItems(FXCollections.observableList(ScheduledFlight.demoFlights()));
-        flightList.getSelectionModel().selectedItemProperty().addListener(event -> listSelectionChanged());
+        flightListTableView.setItems(FXCollections.observableList(ScheduledFlight.demoFlights()));
+        flightListTableView.getSelectionModel().selectedItemProperty().addListener(event -> tableSelectionChanged());
 
-        flightDesignatorCol.setCellValueFactory(cellData ->
-                new SimpleStringProperty(cellData.getValue().getFlightDesignator()));
-        flightDesignatorCol.setCellFactory(col -> new PopulateTableCell<>());
+        flightDesignatorCol.setCellValueFactory(new PropertyValueFactory<ScheduledFlight, String>("flightDesignator"));
+        departureAirportCol.setCellValueFactory(new PropertyValueFactory<ScheduledFlight, String>("departureAirportIdent"));
+        arrivalAirportCol.setCellValueFactory(new PropertyValueFactory<ScheduledFlight, String>("arrivalAirportIdent"));
+        departureTimeCol.setCellValueFactory(new PropertyValueFactory<ScheduledFlight, LocalDateTime>("departureTime"));
+        arrivalTimeCol.setCellValueFactory(new PropertyValueFactory<ScheduledFlight, LocalDateTime>("arrivalTime"));
 
-        departureAirportCol.setCellValueFactory(cellData ->
-                new SimpleStringProperty(cellData.getValue().getDepartureAirportIdent()));
-        departureAirportCol.setCellFactory(col -> new PopulateTableCell<>());
+        SortedList<ScheduledFlight> sortedFlights = new SortedList<>(
+                FXCollections.observableList(ScheduledFlight.demoFlights()));
 
-        arrivalAirportCol.setCellValueFactory(cellData ->
-                new SimpleStringProperty(cellData.getValue().getArrivalAirportIdent()));
-        arrivalAirportCol.setCellFactory(col -> new PopulateTableCell<>());
+        flightListTableView.setItems(sortedFlights);
+        sortedFlights.comparatorProperty().bind(flightListTableView.comparatorProperty());
+        flightListTableView.getSelectionModel().selectedItemProperty().addListener(c -> tableSelectionChanged());
 
-        arrivalTimeCol.setCellValueFactory(cellData ->
-                new SimpleObjectProperty<>(cellData.getValue().getArrivalTime()));
-        arrivalTimeCol.setCellFactory(col -> new PopulateTableCell<>());
 
-        departureTimeCol.setCellValueFactory(cellData ->
-                new SimpleObjectProperty<>(cellData.getValue().getDepartureTime()));
-        departureTimeCol.setCellFactory(col -> new PopulateTableCell<>());
+//        flightDesignatorCol.setCellValueFactory(cellData ->
+//                new SimpleStringProperty(cellData.getValue().getFlightDesignator()));
+//        flightDesignatorCol.setCellFactory(col -> new PopulateTableCell<>());
+//
+//        departureAirportCol.setCellValueFactory(cellData ->
+//                new SimpleStringProperty(cellData.getValue().getDepartureAirportIdent()));
+//        departureAirportCol.setCellFactory(col -> new PopulateTableCell<>());
+//
+//        arrivalAirportCol.setCellValueFactory(cellData ->
+//                new SimpleStringProperty(cellData.getValue().getArrivalAirportIdent()));
+//        arrivalAirportCol.setCellFactory(col -> new PopulateTableCell<>());
+//
+//        arrivalTimeCol.setCellValueFactory(cellData ->
+//                new SimpleObjectProperty<>(cellData.getValue().getArrivalTime()));
+//        arrivalTimeCol.setCellFactory(col -> new PopulateTableCell<>());
+//
+//        departureTimeCol.setCellValueFactory(cellData ->
+//                new SimpleObjectProperty<>(cellData.getValue().getDepartureTime()));
+//        departureTimeCol.setCellFactory(col -> new PopulateTableCell<>());
     }
 
-    private void listSelectionChanged(){
+    public void setDetailViewController(FlightDetailViewController flightDetailViewController) {
+        this.flightDetailViewController = flightDetailViewController;
+    }
+    
+    private void tableSelectionChanged(){
 
-        ScheduledFlight selectedFlight = flightList.getSelectionModel().getSelectedItem();
-        if(selectedFlight == null) {
-//            clear fields
-            return;
-        }
-//       otherwide populate the right fields
+        ScheduledFlight selectedFlight = flightListTableView.getSelectionModel().getSelectedItem();
+        flightDetailViewController.showFlight(selectedFlight);
     }
 
 static class PopulateTableCell<R, C> extends TableCell<R, C>{
