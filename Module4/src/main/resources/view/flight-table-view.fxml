@@ -1,21 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="edu.au.cpsc.module4.FlightDesignator.controller.FlightTableViewController"
-            prefHeight="400.0" prefWidth="600.0">
-
-    <TableView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-        <columns>
-            <TableColumn prefWidth="75.0" text="C1" />
-            <TableColumn prefWidth="75.0" text="C2" />
-        </columns>
-    </TableView>
-
-</AnchorPane>
+<TableView fx:id="flightList" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.au.cpsc.module4.FlightDesignator.controller.FlightTableViewController">
+     <columns>
+         <TableColumn fx:id="flightDesignatorCol" maxWidth="1.7976931348623157E308" minWidth="120.0" prefWidth="-1.0" text="Flight Designator" />
+         <TableColumn fx:id="departureAirportCol" maxWidth="1.7976931348623157E308" minWidth="120.0" prefWidth="-1.0" text="Departure Airport" />
+         <TableColumn fx:id="departureTimeCol" maxWidth="1.7976931348623157E308" minWidth="120.0" prefWidth="-1.0" text="Departure Time" />
+         <TableColumn fx:id="arrivalAirportCol" maxWidth="1.7976931348623157E308" minWidth="120.0" prefWidth="-1.0" text="Arrival Airport" />
+         <TableColumn fx:id="arrivalTimeCol" maxWidth="1.7976931348623157E308" prefWidth="120.0" text="Arrival time" />
+     </columns>
+   <padding>
+      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+   </padding>
+ </TableView>

@@ -16,10 +16,12 @@ import java.io.IOException;
 public class FlightScheduleApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(FlightScheduleApplication.class.getResource("main-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+        FXMLLoader fxmlLoader = new FXMLLoader(FlightScheduleApplication.class.getResource("/view/main-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Rahul Venkatesh's Flight Designator App");
         stage.setScene(scene);
+        stage.setMinWidth(900);
+        stage.setMinHeight(400);
         stage.show();
     }
 }
