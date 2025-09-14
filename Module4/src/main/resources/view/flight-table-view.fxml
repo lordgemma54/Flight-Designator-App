@@ -10,5 +10,6 @@
          <TableColumn fx:id="arrivalAirportCol" editable="false" maxWidth="1.7976931348623157E308" minWidth="120.0" prefWidth="-1.0" text="Arrival Airport" />
          <TableColumn fx:id="departureTimeCol" editable="false" maxWidth="1.7976931348623157E308" minWidth="120.0" prefWidth="-1.0" text="Departure Time" />
          <TableColumn fx:id="arrivalTimeCol" editable="false" maxWidth="1.7976931348623157E308" prefWidth="120.0" text="Arrival time" />
+      <TableColumn fx:id="daysOfWeekCol" maxWidth="1.7976931348623157E308" prefWidth="120.0" text="DaysOfWeek" />
      </columns>
  </TableView>
