@@ -1,6 +1,8 @@
 module edu.au.cpsc.module4.FlightDesignator {
     requires javafx.controls;
     requires javafx.fxml;
+    requires javafx.base;
+//    requires edu.au.cpsc.module4.FlightDesignator;
 
 
     opens edu.au.cpsc.module4.FlightDesignator to javafx.fxml;

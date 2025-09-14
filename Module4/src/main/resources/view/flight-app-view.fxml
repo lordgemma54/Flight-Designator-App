@@ -5,7 +5,7 @@
 <BorderPane prefHeight="290.0" prefWidth="451.0"
             xmlns="http://javafx.com/javafx/24.0.1"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="edu.au.cpsc.module4.FlightDesignator.controller.MainController">
+            fx:controller="edu.au.cpsc.module4.FlightDesignator.controller.FlightScheduleAppController">
    <center>
       <fx:include fx:id="flightTableView" maxWidth="Infinity" source="flight-table-view.fxml" />
    </center>

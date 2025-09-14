@@ -16,7 +16,7 @@ import java.io.IOException;
 public class FlightScheduleApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(FlightScheduleApplication.class.getResource("/view/main-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(FlightScheduleApplication.class.getResource("/view/flight-app-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Rahul Venkatesh's Flight Designator App");
         stage.setScene(scene);

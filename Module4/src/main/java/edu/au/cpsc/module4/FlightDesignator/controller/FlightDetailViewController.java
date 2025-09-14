@@ -6,6 +6,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class FlightDetailViewController {
@@ -36,5 +37,13 @@ public class FlightDetailViewController {
         DateTimeFormatter dtFmt = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         arrivalTime.setText(selectedFlight.getArrivalTime().format(dtFmt));
         departureTime.setText(selectedFlight.getDepartureTime().format(dtFmt));
+    }
+
+    public void updateFlight(ScheduledFlight scheduledFlight) {
+        scheduledFlight.setFlightDesignator(flightDesignator.getText());
+        scheduledFlight.setDepartureAirportIdent(departureAirportIdent.getText());
+        scheduledFlight.setArrivalAirportIdent(arrivalAirportIdent.getText());
+        scheduledFlight.setDepartureTime(LocalDateTime.parse(departureTime.getText()));
+        scheduledFlight.setArrivalTime(LocalDateTime.parse(arrivalTime.getText()));
     }
 }

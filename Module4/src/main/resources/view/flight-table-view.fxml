@@ -7,8 +7,8 @@
      <columns>
          <TableColumn fx:id="flightDesignatorCol" editable="false" maxWidth="1.7976931348623157E308" minWidth="120.0" prefWidth="-1.0" text="Flight Designator" />
          <TableColumn fx:id="departureAirportCol" editable="false" maxWidth="1.7976931348623157E308" minWidth="120.0" prefWidth="-1.0" text="Departure Airport" />
-         <TableColumn fx:id="departureTimeCol" editable="false" maxWidth="1.7976931348623157E308" minWidth="120.0" prefWidth="-1.0" text="Departure Time" />
          <TableColumn fx:id="arrivalAirportCol" editable="false" maxWidth="1.7976931348623157E308" minWidth="120.0" prefWidth="-1.0" text="Arrival Airport" />
+         <TableColumn fx:id="departureTimeCol" editable="false" maxWidth="1.7976931348623157E308" minWidth="120.0" prefWidth="-1.0" text="Departure Time" />
          <TableColumn fx:id="arrivalTimeCol" editable="false" maxWidth="1.7976931348623157E308" prefWidth="120.0" text="Arrival time" />
      </columns>
  </TableView>
