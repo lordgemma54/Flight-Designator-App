@@ -3,13 +3,16 @@ package edu.au.cpsc.module4.FlightDesignator.controller;
 import edu.au.cpsc.module4.FlightDesignator.model.ScheduledFlight;
 import javafx.collections.FXCollections;
 import javafx.collections.transformation.SortedList;
+import javafx.event.Event;
+import javafx.event.EventHandler;
+import javafx.event.EventType;
 import javafx.fxml.FXML;
-import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class FlightTableViewController {
 
@@ -22,7 +25,7 @@ public class FlightTableViewController {
     @FXML
     private TableColumn<ScheduledFlight, LocalDateTime> arrivalTimeCol, departureTimeCol;
 
-    @FXML
+
     private FlightDetailViewController flightDetailViewController;
 
     private static ScheduledFlight flight;
@@ -36,7 +39,7 @@ public class FlightTableViewController {
         arrivalTimeCol.setMaxWidth(Double.MAX_VALUE);
         departureTimeCol.setMaxWidth(Double.MAX_VALUE);
 
-        flightListTableView.setItems(FXCollections.observableList(ScheduledFlight.demoFlights()));
+//        flightListTableView.setItems(FXCollections.observableList(ScheduledFlight.demoFlights()));
         flightListTableView.getSelectionModel().selectedItemProperty().addListener(event -> tableSelectionChanged());
 
         flightDesignatorCol.setCellValueFactory(new PropertyValueFactory<ScheduledFlight, String>("flightDesignator"));
@@ -45,14 +48,57 @@ public class FlightTableViewController {
         departureTimeCol.setCellValueFactory(new PropertyValueFactory<ScheduledFlight, LocalDateTime>("departureTime"));
         arrivalTimeCol.setCellValueFactory(new PropertyValueFactory<ScheduledFlight, LocalDateTime>("arrivalTime"));
 
-        SortedList<ScheduledFlight> sortedFlights = new SortedList<>(
-                FXCollections.observableList(ScheduledFlight.demoFlights()));
-
-        flightListTableView.setItems(sortedFlights);
-        sortedFlights.comparatorProperty().bind(flightListTableView.comparatorProperty());
         flightListTableView.getSelectionModel().selectedItemProperty().addListener(c -> tableSelectionChanged());
 
 
+
+    }
+public void showFlights(List<ScheduledFlight> flights) {
+    SortedList<ScheduledFlight> sortedFlights = new SortedList<>(
+            FXCollections.observableList(flights));
+
+    flightListTableView.setItems(sortedFlights);
+    sortedFlights.comparatorProperty().bind(flightListTableView.comparatorProperty());
+}
+
+public void onFlightSelectionChanged(EventHandler<FlightTableEvent> handler) {
+    flightListTableView.addEventHandler(FlightTableViewController.FlightTableEvent.FLIGHT_SELECTED, handler);
+}
+
+    public void setDetailViewController(FlightDetailViewController flightDetailViewController) {
+        this.flightDetailViewController = flightDetailViewController;
+    }
+
+    private void tableSelectionChanged(){
+        ScheduledFlight selectedFlight = flightListTableView.getSelectionModel().getSelectedItem();
+
+        FlightTableEvent event = new FlightTableEvent(FlightTableEvent.FLIGHT_SELECTED, selectedFlight);
+        flightListTableView.fireEvent(event);
+//        This is still coupled bc this tableViewController communicates directly with
+//        the detailView controller.
+//        flightDetailViewController.showFlight(selectedFlight);
+    }
+
+public static class FlightTableEvent extends Event {
+        public static final EventType<FlightTableEvent> ANY = new EventType<>(Event.ANY,"ANY");
+
+        public static final EventType<FlightTableEvent> FLIGHT_SELECTED = new EventType<>(ANY, "FLIGHT_SELECTED");
+
+        private ScheduledFlight selectedFlight;
+
+        public FlightTableEvent(EventType<? extends Event> eventType, ScheduledFlight selectedFlight) {
+            super(eventType);
+            this.selectedFlight = selectedFlight;
+        }
+
+        public ScheduledFlight getScheduledFlight() {
+            return selectedFlight;
+        }
+    }
+}
+
+
+//          googles solution for setting each cell
 //        flightDesignatorCol.setCellValueFactory(cellData ->
 //                new SimpleStringProperty(cellData.getValue().getFlightDesignator()));
 //        flightDesignatorCol.setCellFactory(col -> new PopulateTableCell<>());
@@ -72,31 +118,20 @@ public class FlightTableViewController {
 //        departureTimeCol.setCellValueFactory(cellData ->
 //                new SimpleObjectProperty<>(cellData.getValue().getDepartureTime()));
 //        departureTimeCol.setCellFactory(col -> new PopulateTableCell<>());
-    }
+//
+//---------------------------------------------------------------------------------------------
 
-    public void setDetailViewController(FlightDetailViewController flightDetailViewController) {
-        this.flightDetailViewController = flightDetailViewController;
-    }
-    
-    private void tableSelectionChanged(){
-
-        ScheduledFlight selectedFlight = flightListTableView.getSelectionModel().getSelectedItem();
-        flightDetailViewController.showFlight(selectedFlight);
-    }
-
-static class PopulateTableCell<R, C> extends TableCell<R, C>{
-        @Override
-    protected void updateItem(C item, boolean empty){
-
-            super.updateItem(item,empty);
-
-            if(empty || item == null){
-                setText(null);
-                setGraphic(null);
-            }else {
-                setText(item.toString());
-            }
-
-        }
-}
-}
+//static class PopulateTableCell<R, C> extends TableCell<R, C>{
+//        @Override
+//    protected void updateItem(C item, boolean empty){
+//
+//            super.updateItem(item,empty);
+//
+//            if(empty || item == null){
+//                setText(null);
+//                setGraphic(null);
+//            }else {
+//                setText(item.toString());
+//            }
+//        }
+//}
