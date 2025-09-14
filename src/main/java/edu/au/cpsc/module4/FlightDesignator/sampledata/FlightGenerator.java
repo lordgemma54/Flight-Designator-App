@@ -1,5 +1,6 @@
 package edu.au.cpsc.module4.FlightDesignator.sampledata;
 
+import edu.au.cpsc.module4.FlightDesignator.data.AirlineDatabase;
 import edu.au.cpsc.module4.FlightDesignator.data.Db;
 import edu.au.cpsc.module4.FlightDesignator.model.ScheduledFlight;
 
@@ -7,6 +8,9 @@ import java.time.LocalDateTime;
 
 public class FlightGenerator {
     public static void main(String[] args) {
+        AirlineDatabase db = new AirlineDatabase();
+        Db.saveDatabase();
+
         ScheduledFlight sf01 = new ScheduledFlight("k3-256","KDEN",
                 LocalDateTime.of(2025, 9, 12, 9, 15), "SYR",
                 LocalDateTime.of(2025, 9, 12, 11, 30));
