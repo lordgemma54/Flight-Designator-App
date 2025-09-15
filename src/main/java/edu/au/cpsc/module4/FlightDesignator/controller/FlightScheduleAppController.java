@@ -37,11 +37,6 @@ public class FlightScheduleAppController {
         flightTableViewController.onFlightSelectionChanged(
                 event -> showSelectedFlight(event.getScheduledFlight()));
         showSelectedFlight(null);
-
-//        flightTableViewController.setDetailViewController(flightDetailViewController);
-
-//    flightTableView.addEventHandler(FlightTableViewController.FlightTableEvent.FLIGHT_SELECTED,
-//            event -> flightDetailViewController.showFlight(event.getScheduledFlight()));
     }
 
 

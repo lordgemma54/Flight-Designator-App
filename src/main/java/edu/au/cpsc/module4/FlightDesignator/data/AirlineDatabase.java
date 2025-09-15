@@ -10,7 +10,6 @@ public class AirlineDatabase implements Serializable {
     private List<ScheduledFlight> flights;
 
     public AirlineDatabase () {
-//        observable list here?
         flights = new ArrayList<>();
     }
 
