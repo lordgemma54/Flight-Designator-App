@@ -72,19 +72,11 @@ public class FlightTableViewController {
             }
         });
 
-//        departureTimeCol.setCellValueFactory(cellData -> {
-//                LocalDateTime dt = cellData.getValue().getDepartureTime();
-//                return new SimpleStringProperty(dt != null ? dtFmt.format(dt) : "");
-//                });
-//
-//        arrivalTimeCol.setCellValueFactory(cellData -> {
-//            LocalDateTime dt = cellData.getValue().getArrivalTime();
-//            return new SimpleStringProperty(dt != null ? dtFmt.format(dt) : "");
-//        });
+
 
         departureTimeCol.setCellValueFactory(new PropertyValueFactory<ScheduledFlight, LocalTime>("departureTime"));
         arrivalTimeCol.setCellValueFactory(new PropertyValueFactory<ScheduledFlight, LocalTime>("arrivalTime"));
-//        daysOfWeekCol.setCellValueFactory(new PropertyValueFactory<ScheduledFlight, String>("daysOfWeek"));
+
 
         daysOfWeekCol.setCellValueFactory(cellData ->
         {HashSet<String> days = cellData.getValue().getDaysOfWeek();
@@ -166,7 +158,6 @@ public void onFlightSelectionChanged(EventHandler<FlightTableEvent> handler) {
 //}
 
 }
-
 
 //          googles solution for setting each cell
 //        flightDesignatorCol.setCellValueFactory(cellData ->

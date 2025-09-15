@@ -1,8 +1,6 @@
 package edu.au.cpsc.module4.FlightDesignator.controller;
 
 import edu.au.cpsc.module4.FlightDesignator.model.ScheduledFlight;
-import javafx.event.Event;
-import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -92,10 +90,7 @@ public class FlightDetailViewController {
         departureTime.setText("invalid time format");
        }
 
-//        HashSet<String> selectedDaysValidation = new HashSet<>(getSelectedDays());
-//        if(!selectedDaysValidation.isEmpty()) {
-//            scheduledFlight.setDaysOfWeek(getSelectedDays());
-//        }
+
         HashSet<String> updatedDays = new HashSet<>();
         if (sunToggleButton.isSelected()) updatedDays.add("U");
         if (monToggleButton.isSelected()) updatedDays.add("M");
@@ -174,27 +169,22 @@ public class FlightDetailViewController {
     private HashSet<String> getSelectedDays(){
         return days;
     }
-//    private void toggleButtonPressed() {
-//        ScheduledFlight selectedFlight = flightDetailView.getSelectionModel().getSelectedItem();
-//        FlightDetailEvent event = new FlightDetailEvent(FlightDetailEvent.TOGGLE_BUTTON_PRESSED,
-//                selectedFlight);
-//        //TODO fire an event here
+
+//
+//    public static class FlightDetailEvent extends Event {
+//        public static final EventType<FlightDetailViewController.FlightDetailEvent> ANY = new EventType<>(Event.ANY, "ANY");
+//
+//        public static final EventType<FlightDetailViewController.FlightDetailEvent> TOGGLE_BUTTON_PRESSED = new EventType<>(ANY, "TOGGLE_BUTTON_PRESSED");
+//
+//        private ScheduledFlight selectedFlight;
+//
+//        public FlightDetailEvent(EventType<? extends Event> eventType, ScheduledFlight selectedFlight) {
+//            super(eventType);
+//            this.selectedFlight = selectedFlight;
+//        }
+//
+//        public ScheduledFlight getScheduledFlight() {
+//            return selectedFlight;
+//        }
 //    }
-
-    public static class FlightDetailEvent extends Event {
-        public static final EventType<FlightDetailViewController.FlightDetailEvent> ANY = new EventType<>(Event.ANY, "ANY");
-
-        public static final EventType<FlightDetailViewController.FlightDetailEvent> TOGGLE_BUTTON_PRESSED = new EventType<>(ANY, "TOGGLE_BUTTON_PRESSED");
-
-        private ScheduledFlight selectedFlight;
-
-        public FlightDetailEvent(EventType<? extends Event> eventType, ScheduledFlight selectedFlight) {
-            super(eventType);
-            this.selectedFlight = selectedFlight;
-        }
-
-        public ScheduledFlight getScheduledFlight() {
-            return selectedFlight;
-        }
-    }
 }
