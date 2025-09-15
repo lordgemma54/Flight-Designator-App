@@ -89,14 +89,23 @@ public class FlightDetailViewController {
                scheduledFlight.setArrivalTime(LocalTime.parse(arrivalTimeString, dtFmt));
            }
        }catch (DateTimeParseException e) {
-
+        departureTime.setText("invalid time format");
        }
 
-        HashSet<String> selectedDaysValidation = new HashSet<>(getSelectedDays());
-        if(!selectedDaysValidation.isEmpty()) {
-            scheduledFlight.setDaysOfWeek(getSelectedDays());
-        }
+//        HashSet<String> selectedDaysValidation = new HashSet<>(getSelectedDays());
+//        if(!selectedDaysValidation.isEmpty()) {
+//            scheduledFlight.setDaysOfWeek(getSelectedDays());
+//        }
+        HashSet<String> updatedDays = new HashSet<>();
+        if (sunToggleButton.isSelected()) updatedDays.add("U");
+        if (monToggleButton.isSelected()) updatedDays.add("M");
+        if (tueToggleButton.isSelected()) updatedDays.add("T");
+        if (wedToggleButton.isSelected()) updatedDays.add("W");
+        if (thuToggleButton.isSelected()) updatedDays.add("R");
+        if (friToggleButton.isSelected()) updatedDays.add("F");
+        if (satToggleButton.isSelected()) updatedDays.add("S");
 
+        scheduledFlight.setDaysOfWeek(updatedDays);
     }
 
     @FXML
