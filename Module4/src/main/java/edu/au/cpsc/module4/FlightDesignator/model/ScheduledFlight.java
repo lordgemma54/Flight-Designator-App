@@ -39,6 +39,7 @@ public class ScheduledFlight implements Serializable {
         setArrivalTime(arrTime);
         setDaysOfWeek(daysOfWeek);
     }
+
     public String getFlightDesignator() {
         return flightDesignator;
     }
