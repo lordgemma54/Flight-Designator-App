@@ -18,7 +18,7 @@ public class FlightScheduleApplication extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(FlightScheduleApplication.class.getResource("/view/flight-app-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle("Rahul Venkatesh's Flight Designator App");
+        stage.setTitle("Flight Designator App");
         stage.setScene(scene);
         stage.setMinWidth(800);
         stage.setMinHeight(400);
